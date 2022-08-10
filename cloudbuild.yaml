@@ -1,5 +1,14 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/pso-pubsec-demos/demos/Helloworld:$SHORT_SHA', '.' ]
-images:
-- 'us-central1-docker.pkg.dev/pso-pubsec-demos/demos/Helloworld:$SHORT_SHA'
+  id: Build
+  args:
+  - 'build'
+  - '-t'
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/demos/helloworld:$SHORT_SHA'
+  - '.'
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: Push
+  args:
+  - 'push'
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/demos/helloworld:$SHORT_SHA'
