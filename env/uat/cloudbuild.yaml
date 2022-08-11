@@ -1,0 +1,6 @@
+steps:
+
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  id: Deploy UAT 
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'helloworld', '--image', 'gcr.io/$PROJECT_ID/demos/helloworld:$SHORT_SHA', '--region', 'us-east4']
